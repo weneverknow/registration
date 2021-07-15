@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:registration/screen/components/components.dart';
 import 'package:registration/screen/pages/pages.dart';
 import 'package:registration/screen/widgets/widgets.dart';
 import 'package:registration/theme/theme.dart';
@@ -11,41 +12,37 @@ class Screen extends StatefulWidget {
 }
 
 class _ScreenState extends State<Screen> {
+  PageController _pageController = PageController();
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: primaryColor,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            FirstPage(),
-            Container(
-              height: 60,
-              margin: EdgeInsets.fromLTRB(24, 50, 24, 0),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    height: 4,
-                    color: Colors.black,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(
-                        4, (index) => CircleNumber(text: '${index + 1}')),
-                  ),
-                ],
+        backgroundColor: greyColor,
+        body: SafeArea(
+          child: Stack(
+            children: [
+              IndieBackground(),
+              PageView(
+                controller: _pageController,
+                children: [FirstPage(), SecondPage()],
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: CustomButton(text: 'NEXT'),
-            )
-          ],
+              HeaderContainer(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                      4, (index) => CircleNumber(text: '${index + 1}')),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+        bottomNavigationBar: CustomButton(
+          text: 'NEXT',
+        ));
   }
 }
