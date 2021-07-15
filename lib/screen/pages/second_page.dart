@@ -18,16 +18,12 @@ class _SecondPageState extends State<SecondPage> {
   @override
   void initState() {
     passwordController = TextEditingController(text: '');
-    changeCirlceColor();
-    super.initState();
-  }
-
-  void changeCirlceColor() async {
-    await Future.delayed(Duration(milliseconds: 800));
-
-    setState(() {
-      circleColor = Color(0xFF2A8D2A);
+    changeColor(() {
+      setState(() {
+        circleColor = Color(0xFF2A8D2A);
+      });
     });
+    super.initState();
   }
 
   int strength = 0;
@@ -48,7 +44,7 @@ class _SecondPageState extends State<SecondPage> {
     final lowercaseReg = RegExp(r'[a-z]');
     final uppercaseReg = RegExp(r'[A-Z]');
     final numberReg = RegExp(r'[0-9]');
-    final charReg = RegExp(r'[\(\)\[\]\{\}\^\$\.\?\*\+\|\=\+\-]');
+    final charReg = RegExp(r'[\(\)\[\]\{\}\^\$\.\?\*\+\|\=\+\-\@\#]');
 
     isLowercase = lowercaseReg.hasMatch(password);
     handlePasswordPower(isLowercase, 'lower');
@@ -77,13 +73,12 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stack(
           children: [
             BackButtonHeader(
               onTap: () {
-                Navigator.of(context).pop(false);
+                Navigator.of(context).pop();
               },
             ),
             HeaderContainer(
