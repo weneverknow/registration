@@ -13,9 +13,11 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      width: width ?? MediaQuery.of(context).size.width,
+      width: width ?? ScreenSize.screenWidth(context),
       margin: EdgeInsets.only(
-          left: defaultPadding, right: defaultPadding, bottom: defaultPadding),
+          bottom: defaultPadding / 2,
+          left: defaultPadding,
+          right: defaultPadding),
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(primary: color ?? Color(0xff90BEF8)),
           onPressed: onPress ?? () {},
