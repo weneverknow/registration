@@ -8,7 +8,8 @@ class CircleNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 1000),
       width: 60,
       height: 60,
       decoration: BoxDecoration(
