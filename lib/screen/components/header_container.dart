@@ -2,17 +2,17 @@ part of 'components.dart';
 
 class HeaderContainer extends StatelessWidget {
   const HeaderContainer({
-    required this.child,
+    required this.children,
     Key? key,
   }) : super(key: key);
 
-  final Widget child;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      margin: EdgeInsets.fromLTRB(24, 50, 24, 0),
+      margin: EdgeInsets.fromLTRB(24, 60, 24, 0),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -20,7 +20,11 @@ class HeaderContainer extends StatelessWidget {
             height: 4,
             color: Colors.black,
           ),
-          child
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: children,
+          )
         ],
       ),
     );
