@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'GIN Finans App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: primaryColor,
+          iconTheme: IconThemeData(color: Colors.white),
           textTheme: Theme.of(context).textTheme.apply().copyWith(
               subtitle1: Theme.of(context)
                   .textTheme
