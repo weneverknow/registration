@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:registration/theme/theme.dart';
 import 'screen/screen.dart';
 
 void main() {
@@ -13,8 +14,19 @@ class MyApp extends StatelessWidget {
       title: 'GIN Finans App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          textTheme: Theme.of(context).textTheme.apply().copyWith(
+              subtitle1: Theme.of(context)
+                  .textTheme
+                  .subtitle1!
+                  .copyWith(color: Colors.white),
+              caption: Theme.of(context)
+                  .textTheme
+                  .caption!
+                  .copyWith(color: Colors.white),
+              headline6: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: Colors.white))),
       home: Screen(),
     );
   }
