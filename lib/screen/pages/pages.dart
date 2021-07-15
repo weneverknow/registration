@@ -6,3 +6,4 @@ import '../widgets/widgets.dart';
 
 part 'first_page.dart';
 part 'second_page.dart';
+part 'third_page.dart';
