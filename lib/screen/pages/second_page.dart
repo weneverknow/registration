@@ -76,11 +76,6 @@ class _SecondPageState extends State<SecondPage> {
       body: SafeArea(
         child: Stack(
           children: [
-            BackButtonHeader(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
             HeaderContainer(
               children: [
                 CircleNumber(
@@ -91,6 +86,11 @@ class _SecondPageState extends State<SecondPage> {
                 CircleNumber(text: '3'),
                 CircleNumber(text: '4'),
               ],
+            ),
+            BackButtonHeader(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
             ),
             ContentWrapper(
                 child: Column(
@@ -129,13 +129,6 @@ class _SecondPageState extends State<SecondPage> {
                               changeObscure(false);
                             },
                             child: Icon(Icons.remove_red_eye_rounded))),
-                isError
-                    ? ErrorText(
-                        text: passwordController.text.isEmpty
-                            ? 'Password is empty'
-                            : 'Password is to weak',
-                      )
-                    : const SizedBox.shrink(),
                 const SizedBox(
                   height: defaultPadding,
                 ),
@@ -183,7 +176,13 @@ class _SecondPageState extends State<SecondPage> {
                   ],
                 ),
               ],
-            ))
+            )),
+            AnimatedAlert(
+              anyError: isError,
+              errorText: passwordController.text.isEmpty
+                  ? 'Password is empty'
+                  : 'Password is too weak',
+            )
           ],
         ),
       ),

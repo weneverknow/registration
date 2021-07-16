@@ -17,6 +17,8 @@ class _ThirdPageState extends State<ThirdPage> {
   String _incomeSelected = "-Choose Option-";
   String _expenseSelected = "-Choose Option-";
 
+  bool anyError = false;
+
   List goalOptions = [
     {"id": 1, "desc": "Savings"},
     {"id": 2, "desc": "Investment"},
@@ -25,16 +27,16 @@ class _ThirdPageState extends State<ThirdPage> {
   ];
 
   List incomeOptions = [
-    {"id": 1, "desc": "< 1 Juta"},
-    {"id": 2, "desc": "1 Juta - 3 Juta"},
-    {"id": 3, "desc": "3 Juta - 4 Juta"},
-    {"id": 4, "desc": "> 5 Juta"}
+    {"id": 1, "desc": "< 1 Million"},
+    {"id": 2, "desc": "1 Million - 3 Million"},
+    {"id": 3, "desc": "3 Million - 4 Million"},
+    {"id": 4, "desc": "> 5 Million"}
   ];
 
   List expenseOptions = [
-    {"id": 1, "desc": "< 1 Juta"},
-    {"id": 2, "desc": ">= 1 Juta & < 3 Juta"},
-    {"id": 3, "desc": ">= 3 Juta"}
+    {"id": 1, "desc": "< 1 Million"},
+    {"id": 2, "desc": ">= 1 Million & < 3 Million"},
+    {"id": 3, "desc": ">= 3 Million"}
   ];
 
   @override
@@ -63,11 +65,10 @@ class _ThirdPageState extends State<ThirdPage> {
                 ),
                 CircleNumber(
                   text: '2',
-                  color: Color(0xFF2A8D2A),
+                  color: circleColor,
                 ),
                 CircleNumber(
                   text: '3',
-                  color: circleColor,
                 ),
                 CircleNumber(text: '4'),
               ],
@@ -117,8 +118,11 @@ class _ThirdPageState extends State<ThirdPage> {
                               topText: 'Expense Income',
                               showList: () {
                                 setState(() {
+                                  anyError = false;
                                   _expenseSelectionStretch =
                                       !_expenseSelectionStretch;
+                                  _goalSelectionStretch = false;
+                                  _incomeSelectionStretch = false;
                                 });
                               },
                               whichSelectionStretch: _expenseSelectionStretch,
@@ -132,8 +136,11 @@ class _ThirdPageState extends State<ThirdPage> {
                               topText: 'Monthly Income',
                               showList: () {
                                 setState(() {
+                                  anyError = false;
                                   _incomeSelectionStretch =
                                       !_incomeSelectionStretch;
+                                  _goalSelectionStretch = false;
+                                  _expenseSelectionStretch = false;
                                 });
                               },
                               whichSelectionStretch: _incomeSelectionStretch,
@@ -146,8 +153,11 @@ class _ThirdPageState extends State<ThirdPage> {
                               topText: 'Goal for activation',
                               showList: () {
                                 setState(() {
+                                  anyError = false;
                                   _goalSelectionStretch =
                                       !_goalSelectionStretch;
+                                  _incomeSelectionStretch = false;
+                                  _expenseSelectionStretch = false;
                                 });
                               },
                               whichSelectionStretch: _goalSelectionStretch,
@@ -159,20 +169,28 @@ class _ThirdPageState extends State<ThirdPage> {
                     ),
                   ],
                 )),
+            AnimatedAlert(
+              anyError: anyError,
+              errorText: 'any data still empty',
+            )
           ],
         ),
       ),
       bottomNavigationBar: CustomButton(
         text: 'NEXT',
         onPress: () {
-          if (_goalSelected == '-Choose Option-' ||
-              _incomeSelected == '-Choose Option-' ||
-              _expenseSelected == '-Choose Option-') {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text('any data still empty')));
-          } else {
+          if (_goalSelected != '-Choose Option-' &&
+              _incomeSelected != '-Choose Option-' &&
+              _expenseSelected != '-Choose Option-') {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => FourthPage()));
+            setState(() {
+              anyError = false;
+            });
+          } else {
+            setState(() {
+              anyError = true;
+            });
           }
         },
       ),

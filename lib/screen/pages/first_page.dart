@@ -79,23 +79,10 @@ class _FirstPageState extends State<FirstPage> {
                           onChanged: (val) {
                             setState(() {
                               isValid = val.length > 0;
+                              _showError = false;
                             });
                           },
                         )),
-                    _showError
-                        ? Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: defaultPadding / 2,
-                                horizontal: defaultPadding / 4),
-                            child: Text(
-                              'email is not valid',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1!
-                                  .copyWith(color: Colors.red[300]),
-                            ),
-                          )
-                        : const SizedBox.shrink()
                   ],
                 ),
               )),
@@ -107,6 +94,10 @@ class _FirstPageState extends State<FirstPage> {
               CircleNumber(text: '4')
             ],
           ),
+          AnimatedAlert(
+            anyError: _showError,
+            errorText: 'Email is not valid',
+          )
         ],
       ),
       bottomNavigationBar: CustomButton(
