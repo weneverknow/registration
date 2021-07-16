@@ -1,6 +1,9 @@
 # registration
 
-A new Flutter project.
+<h2>Preview:</h2>
+
+https://user-images.githubusercontent.com/4042994/125983476-dc83ec88-44c2-4aca-a17c-01884c94d4bc.mp4
+
 
 ## Getting Started
 
