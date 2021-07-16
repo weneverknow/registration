@@ -11,7 +11,11 @@ class BackButtonHeader extends StatelessWidget {
           horizontal: defaultPadding, vertical: defaultPadding / 2),
       child: Row(
         children: [
-          GestureDetector(onTap: onTap, child: Icon(Icons.arrow_back_rounded)),
+          GestureDetector(
+              onTap: onTap,
+              child: Icon(Platform.isAndroid
+                  ? Icons.arrow_back_rounded
+                  : Icons.arrow_back_ios_new_rounded)),
           const SizedBox(width: defaultPadding / 2),
           TitleText(text: 'Create Account')
         ],
