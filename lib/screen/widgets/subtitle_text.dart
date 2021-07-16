@@ -12,6 +12,7 @@ class SubTitleText extends StatelessWidget {
       text,
       style: Theme.of(context).textTheme.subtitle1!.copyWith(
           color: color ?? Theme.of(context).textTheme.subtitle1!.color),
+      overflow: TextOverflow.clip,
     );
   }
 }

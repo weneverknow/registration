@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:registration/screen/screen_size.dart';
 import 'package:registration/theme/theme.dart';
+import '../controller/alert_animation.dart';
 
 part 'circle_number.dart';
 part 'custom_button.dart';
@@ -11,3 +12,4 @@ part 'caption_text.dart';
 part 'error_text.dart';
 part 'custom_list_box.dart';
 part 'expanded_list_box.dart';
+part 'animated_alert.dart';

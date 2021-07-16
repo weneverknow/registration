@@ -9,6 +9,7 @@ class TitleText extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.headline6,
+      overflow: TextOverflow.clip,
     );
   }
 }
