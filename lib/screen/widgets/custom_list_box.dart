@@ -21,37 +21,40 @@ class CustomListBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: height,
-          margin: EdgeInsets.only(top: topMargin!),
-          padding: EdgeInsets.symmetric(
-            horizontal: defaultPadding,
-          ),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(12)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CaptionText(
-                    text: topText,
-                    color: Colors.grey[600],
-                  ),
-                  SubTitleText(
-                    text: text,
-                    color: Colors.black,
-                  )
-                ],
-              ),
-              GestureDetector(
-                  onTap: onTap ?? () {},
-                  child: Icon(Icons.arrow_drop_down_rounded,
-                      size: 50, color: Colors.grey[600]))
-            ],
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            height: height,
+            margin: EdgeInsets.only(top: topMargin!),
+            padding: EdgeInsets.symmetric(
+              horizontal: defaultPadding,
+            ),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(12)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CaptionText(
+                      text: topText,
+                      color: Colors.grey[600],
+                    ),
+                    SubTitleText(
+                      text: text,
+                      color: Colors.black,
+                    )
+                  ],
+                ),
+                GestureDetector(
+                    onTap: onTap ?? () {},
+                    child: Icon(Icons.arrow_drop_down_rounded,
+                        size: 50, color: Colors.grey[600]))
+              ],
+            ),
           ),
         ),
         listChild ?? const SizedBox.shrink()
